@@ -1,6 +1,8 @@
 package com.kishorramani.daggerlearning
 
-class UserRegistrationService(
+import javax.inject.Inject
+
+class UserRegistrationService @Inject constructor(
     private val userRepository: UserRepository,
     private val emailService: EmailService
 ) {
@@ -11,15 +13,4 @@ class UserRegistrationService(
     }
 }
 
-/*
-consumer @inject
-producer @Provides, @Module, @Binds
-connector @Component
-*/
 
-/*
-unit testing
-single responsibility
-lifetime of these object
-extensible
-*/
