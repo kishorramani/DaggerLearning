@@ -14,7 +14,7 @@ class NotificationServiceModule {
     }
 
     /*@Provides
-    fun getMessageService(messageService: MessageService) : NotificationService {
-        return messageService
+    fun getMessageService(emailService: EmailService) : NotificationService {
+        return emailService
     }*/
 }
