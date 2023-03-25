@@ -3,16 +3,19 @@ package com.kishorramani.daggerlearning
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kishorramani.daggerlearning.component.DaggerUserRegistrationComponent
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var userRegistrationService: UserRegistrationService   //This is field injection example
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val daggerComponent = DaggerUserRegistrationComponent.builder().build()
-
-        val userRegistrationService = daggerComponent.getUserRegistrationService()
-        val emailService = daggerComponent.emailService()
+        daggerComponent.mainInject(this)
 
         userRegistrationService.registerUser("user1@gmail.com", "user@123")
     }
