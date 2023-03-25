@@ -1,13 +1,11 @@
 package com.kishorramani.daggerlearning.component
 
-import com.kishorramani.daggerlearning.EmailService
-import com.kishorramani.daggerlearning.UserRegistrationService
+import com.kishorramani.daggerlearning.MainActivity
+import com.kishorramani.daggerlearning.modules.NotificationServiceModule
+import com.kishorramani.daggerlearning.modules.UserRepositoryModule
 import dagger.Component
 
-@Component
+@Component(modules = [UserRepositoryModule::class, NotificationServiceModule::class])
 interface UserRegistrationComponent {
-
-    fun getUserRegistrationService() : UserRegistrationService
-
-    fun emailService(): EmailService
+    fun mainInject(mainActivity: MainActivity)
 }
