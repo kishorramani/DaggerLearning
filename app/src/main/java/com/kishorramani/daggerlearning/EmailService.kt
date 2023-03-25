@@ -3,10 +3,20 @@ package com.kishorramani.daggerlearning
 import android.util.Log
 import javax.inject.Inject
 
-private const val TAG = "EmailService"
+private const val TAG = "ki- EmailService"
 
-class EmailService @Inject constructor() {
-    fun sendEmail(to: String, from: String, body: String) {
+interface NotificationService {
+    fun send(to: String, from: String, body: String)
+}
+
+class EmailService @Inject constructor() : NotificationService {
+    override fun send(to: String, from: String, body: String) {
         Log.e(TAG, "Email Send")
+    }
+}
+
+class MessageService : NotificationService {
+    override fun send(to: String, from: String, body: String) {
+        Log.e(TAG, "Message Send")
     }
 }
