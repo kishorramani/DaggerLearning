@@ -3,7 +3,6 @@ package com.kishorramani.daggerlearning
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kishorramani.daggerlearning.component.DaggerUserRegistrationComponent
-import com.kishorramani.daggerlearning.modules.NotificationServiceModule
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val daggerComponent = (application as UserApplication).userRegistrationComponent
-        daggerComponent.mainInject(this)
-
+        val appComponent = (application as UserApplication).appComponent
+        val userRegistrationComponent = DaggerUserRegistrationComponent.factory().create(3, appComponent)
+        userRegistrationComponent.inject(this)
         userRegistrationService.registerUser("user1@gmail.com", "user@123")
     }
 }

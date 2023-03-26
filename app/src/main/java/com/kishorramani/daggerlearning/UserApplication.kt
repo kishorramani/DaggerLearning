@@ -1,16 +1,16 @@
 package com.kishorramani.daggerlearning
 
 import android.app.Application
-import com.kishorramani.daggerlearning.component.DaggerUserRegistrationComponent
-import com.kishorramani.daggerlearning.component.UserRegistrationComponent
+import com.kishorramani.daggerlearning.component.AppComponent
+import com.kishorramani.daggerlearning.component.DaggerAppComponent
 
 class UserApplication : Application() {
 
-    lateinit var userRegistrationComponent: UserRegistrationComponent
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        userRegistrationComponent = DaggerUserRegistrationComponent.factory().create(3)
+        appComponent = DaggerAppComponent.builder().build()
     }
 }

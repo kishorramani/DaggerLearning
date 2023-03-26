@@ -1,6 +1,7 @@
 package com.kishorramani.daggerlearning
 
 import android.util.Log
+import com.kishorramani.daggerlearning.scopes.ActivityScope
 import com.kishorramani.daggerlearning.scopes.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +12,7 @@ interface NotificationService {
     fun send(to: String, from: String, body: String)
 }
 
-@ApplicationScope
+@ActivityScope
 class EmailService @Inject constructor() : NotificationService {
     override fun send(to: String, from: String, body: String) {
         Log.e(TAG, "Email Send")
