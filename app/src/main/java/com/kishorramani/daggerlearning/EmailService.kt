@@ -1,7 +1,9 @@
 package com.kishorramani.daggerlearning
 
 import android.util.Log
+import com.kishorramani.daggerlearning.scopes.ApplicationScope
 import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val TAG = "ki- EmailService"
 
@@ -9,6 +11,7 @@ interface NotificationService {
     fun send(to: String, from: String, body: String)
 }
 
+@ApplicationScope
 class EmailService @Inject constructor() : NotificationService {
     override fun send(to: String, from: String, body: String) {
         Log.e(TAG, "Email Send")

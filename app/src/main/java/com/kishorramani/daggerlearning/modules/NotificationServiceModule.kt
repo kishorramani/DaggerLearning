@@ -4,14 +4,17 @@ import com.kishorramani.daggerlearning.EmailService
 import com.kishorramani.daggerlearning.MessageService
 import com.kishorramani.daggerlearning.NotificationService
 import com.kishorramani.daggerlearning.qualifiers.MessageQualifier
+import com.kishorramani.daggerlearning.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 //class NotificationServiceModule(private val retryCount: Int) {
 class NotificationServiceModule {
 
+    @ApplicationScope
     @MessageQualifier
     @Provides
     fun getMessageService(retryCount: Int) : NotificationService {

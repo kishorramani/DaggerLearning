@@ -11,14 +11,16 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var userRegistrationService: UserRegistrationService   //This is field injection example
 
+    @Inject
+    lateinit var emailService: EmailService
+    @Inject
+    lateinit var emailService1: EmailService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*val daggerComponent = DaggerUserRegistrationComponent.builder()
-            .notificationServiceModule(NotificationServiceModule(3))
-            .build()*/
-        val daggerComponent = DaggerUserRegistrationComponent.factory().create(3)
+        val daggerComponent = (application as UserApplication).userRegistrationComponent
         daggerComponent.mainInject(this)
 
         userRegistrationService.registerUser("user1@gmail.com", "user@123")
