@@ -2,6 +2,7 @@ package com.kishorramani.daggerlearning
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.kishorramani.daggerlearning.component.DaggerUserRegistrationComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var emailService: EmailService
+
     @Inject
     lateinit var emailService1: EmailService
 
@@ -19,7 +21,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val appComponent = (application as UserApplication).appComponent
-        val userRegistrationComponent = appComponent.getUserRegistrationComponent()
+
+        val userRegistrationComponent = DaggerUserRegistrationComponent.builder()
+            .appComponent(appComponent)
+            .retryCount(3)
+            .build()
         userRegistrationComponent.inject(this)
         userRegistrationService.registerUser("user1@gmail.com", "user@123")
     }

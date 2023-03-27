@@ -6,15 +6,28 @@ import com.kishorramani.daggerlearning.modules.UserRepositoryModule
 import com.kishorramani.daggerlearning.scopes.ActivityScope
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = [UserRepositoryModule::class, NotificationServiceModule::class])
+@Component(dependencies = [AppComponent::class], modules = [UserRepositoryModule::class, NotificationServiceModule::class])
 interface UserRegistrationComponent {
     fun inject(mainActivity: MainActivity)
 
-//    @Subcomponent.Factory
-//    interface Factory {
-//        fun create(@BindsInstance retryCount: Int): UserRegistrationComponent
-//    }
+    // To use Component.Builder()
+    // Define @Component.Builder
+    // Create build method ---> return Component
+    // Create runtime value assign method ---> return Builder
+
+    //Builder
+    /*@Component.Builder
+    interface Builder {
+        fun build() : UserRegistrationComponent
+        fun retryCount(@BindsInstance retryCount: Int): Builder
+    }*/
+
+    @Component.Builder
+    interface Builder {
+        fun build(): UserRegistrationComponent
+        fun retryCount(@BindsInstance retryCount: Int): Builder
+        fun appComponent(appComponent: AppComponent): Builder
+    }
 }
